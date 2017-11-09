@@ -3,42 +3,42 @@ docker-oracle-xe-11g
 
 Oracle Express Edition 11g Release 2 on Ubuntu 16.04 LTS
 
-This **Dockerfile** is a [trusted build](https://registry.hub.docker.com/u/wnameless/oracle-xe-11g/) of [Docker Registry](https://registry.hub.docker.com/).
+
 
 ### Installation(with Ubuntu 16.04)
 ```
-docker pull wnameless/oracle-xe-11g
+docker pull registry.cn-beijing.aliyuncs.com/sirius_yangchen/oracle-xe-11g-ubuntu16.04
 ```
 
 Run with 22 and 1521 ports opened:
 ```
-docker run -d -p 49160:22 -p 49161:1521 wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 registry.cn-beijing.aliyuncs.com/sirius_yangchen/oracle-xe-11g-ubuntu16.04
 ```
 
 Run this, if you want the database to be connected remotely:
 ```
-docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_ALLOW_REMOTE=true registry.cn-beijing.aliyuncs.com/sirius_yangchen/oracle-xe-11g-ubuntu16.04
 ```
 
 By default, the password verification is disable(password never expired). If you want it back, run this:
 ```
-docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_PASSWORD_VERIFY=true wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_PASSWORD_VERIFY=true registry.cn-beijing.aliyuncs.com/sirius_yangchen/oracle-xe-11g-ubuntu16.04
 ```
 
 For performance concern, you may want to disable the disk asynch IO:
 ```
-docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_DISABLE_ASYNCH_IO=true wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_DISABLE_ASYNCH_IO=true registry.cn-beijing.aliyuncs.com/sirius_yangchen/oracle-xe-11g-ubuntu16.04
 ```
 
 For XDB user, run this:
 ```
-docker run -d -p 49160:22 -p 49161:1521 -p 8080:8080 -e ORACLE_ENABLE_XDB=true wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 -p 8080:8080 -e ORACLE_ENABLE_XDB=true registry.cn-beijing.aliyuncs.com/sirius_yangchen/oracle-xe-11g-ubuntu16.04
 ```
 ### Start Oracle XE
 Running Oracle XE in `detached` mode with `1521` and `8080` ports opened and `2GB` shared memory:
 
 ```
-docker run -d --shm-size=2g -p 1521:1521 -p 8080:8080 wnameless/oracle-xe-11g
+docker run -d --shm-size=2g -p 1521:1521 -p 8080:8080 registry.cn-beijing.aliyuncs.com/sirius_yangchen/oracle-xe-11g-ubuntu16.04
 ```
 
 ### Start Oracle XE and execute SQL on startup
@@ -46,7 +46,7 @@ docker run -d --shm-size=2g -p 1521:1521 -p 8080:8080 wnameless/oracle-xe-11g
 Put your `*.sql` files for database init into some local folder and mount this folder during container startup to `/etc/entrypoint-initdb.d` volume.
 
 ```
-docker run -d --shm-size=1g -p 8080:8080 -p 1521:1521 -v /local-initdb:/etc/entrypoint-initdb.d wnameless/oracle-xe-11g
+docker run -d --shm-size=1g -p 8080:8080 -p 1521:1521 -v /local-initdb:/etc/entrypoint-initdb.d registry.cn-beijing.aliyuncs.com/sirius_yangchen/oracle-xe-11g-ubuntu16.04
 ```
 
 Check if localhost:8080 work
