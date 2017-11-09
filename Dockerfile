@@ -1,6 +1,5 @@
 FROM ubuntu:16.04
 
-MAINTAINER Wei-Ming Wu <wnameless@gmail.com>
 
 ADD assets /assets
 RUN /assets/setup.sh
